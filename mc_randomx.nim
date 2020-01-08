@@ -50,9 +50,13 @@ proc init(
 
 proc init*(
     cache: RandomXCache,
-    key: var string
+    keyArg: string
 ) {.inline.} =
-    cache.init(cast[pointer](addr key[0]), csize(key.len))
+    var key: string = keyArg
+    if key.len == 0:
+        cache.init(nil, 0)
+    else:
+        cache.init(addr key[0], key.len)
 
 #Deallocate a cache.
 proc dealloc*(
@@ -111,10 +115,14 @@ proc hash(
 
 proc hash*(
     vm: RandomXVM,
-    input: var string
+    inputArg: string
 ): string =
+    var input: string = inputArg
     result = newString(48)
-    vm.hash(cast[pointer](addr input[0]), csize(input.len), cast[pointer](addr result[0]))
+    if input.len == 0:
+        vm.hash(nil, 0, addr result[0])
+    else:
+        vm.hash(addr input[0], input.len, addr result[0])
 
 #Hash data yet optimized for when there's a series of hashes.
 proc hashFirst*(
