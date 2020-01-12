@@ -1,6 +1,6 @@
 import os
 
-version     = "0.9.2"
+version     = "0.9.3"
 author      = "Luke Parker"
 description = "A Nim wrapper for RandomX with the configuration used by the Meros Cryptocurrency."
 license     = "MIT"
@@ -36,10 +36,7 @@ before install:
 
     withDir projectDir() / "RandomX" / "src":
         rmFile "configuration.h"
-        rmFile "randomx.h"
-
         cpFile("../../MerosConfiguration/configuration.h", "./configuration.h")
-        cpFile("../../MerosConfiguration/randomx.h", "./randomx.h")
 
     withDir projectDir() / "RandomX":
         mkDir "build"

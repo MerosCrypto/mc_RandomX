@@ -118,7 +118,7 @@ proc hash*(
     inputArg: string
 ): string =
     var input: string = inputArg
-    result = newString(48)
+    result = newString(32)
     if input.len == 0:
         vm.hash(nil, 0, addr result[0])
     else:
