@@ -24,13 +24,13 @@ type
         RANDOMX_FLAG_ARGON2_AVX2  = 64
         RANDOMX_FLAG_ARGON2       = 96
 
-    RandomXCacheObject {.importc: "randomx_cache", header: "randomx.h".} = object
+    RandomXCacheObject {.importc: "randomx_cache", header: "randomx.h", incompleteStruct.} = object
     RandomXCache* = ptr RandomXCacheObject
 
-    RandomXDatasetObject {.importc: "randomx_dataset", header: "randomx.h".} = object
+    RandomXDatasetObject {.importc: "randomx_dataset", header: "randomx.h", incompleteStruct.} = object
     RandomXDataset* = ptr RandomXDatasetObject
 
-    RandomXVMObject {.importc: "randomx_vm", header: "randomx.h".} = object
+    RandomXVMObject {.importc: "randomx_vm", header: "randomx.h", incompleteStruct.} = object
     RandomXVM* = ptr RandomXVMObject
 
 #Get the recommended flags.
