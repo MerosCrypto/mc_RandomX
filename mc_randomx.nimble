@@ -1,6 +1,6 @@
 import os
 
-version     = "0.9.4"
+version     = "0.9.5"
 author      = "Luke Parker"
 description = "A Nim wrapper for RandomX with the configuration used by the Meros Cryptocurrency."
 license     = "MIT"
@@ -42,5 +42,5 @@ before install:
         mkDir "build"
 
     withDir projectDir() / "RandomX" / "build":
-        exec cmakeExe & " -DARCH=native .."
+        exec cmakeExe & " .."
         exec makeExe
