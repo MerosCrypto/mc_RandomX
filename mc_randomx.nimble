@@ -1,6 +1,6 @@
 import os
 
-version     = "0.9.5"
+version     = "0.9.6"
 author      = "Luke Parker"
 description = "A Nim wrapper for RandomX with the configuration used by the Meros Cryptocurrency."
 license     = "MIT"
@@ -16,11 +16,6 @@ installFiles = @[
 ]
 
 before install:
-    let gitExe: string = system.findExe("git")
-    if gitExe == "":
-        echo "Failed to find executable `git`."
-        quit(1)
-
     let cmakeExe: string = system.findExe("cmake")
     if cmakeExe == "":
         echo "Failed to find executable `cmake`."
@@ -31,16 +26,13 @@ before install:
         echo "Failed to find executable `make`."
         quit(1)
 
-    withDir projectDir():
-        exec gitExe & " submodule update --init --recursive"
-
-    withDir projectDir() / "RandomX" / "src":
+    withDir thisDir() / "RandomX" / "src":
         rmFile "configuration.h"
         cpFile("../../MerosConfiguration/configuration.h", "./configuration.h")
 
-    withDir projectDir() / "RandomX":
+    withDir thisDir() / "RandomX":
         mkDir "build"
 
-    withDir projectDir() / "RandomX" / "build":
+    withDir thisDir() / "RandomX" / "build":
         exec cmakeExe & " .."
         exec makeExe
