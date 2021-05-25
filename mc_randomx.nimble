@@ -1,6 +1,6 @@
 import os
 
-version     = "0.9.7"
+version     = "0.9.8"
 author      = "Luke Parker"
 description = "A Nim wrapper for RandomX with the configuration used by the Meros Cryptocurrency."
 license     = "MIT"
